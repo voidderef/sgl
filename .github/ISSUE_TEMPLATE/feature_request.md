@@ -1,3 +1,12 @@
+---
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 ## Summary
 <!--- Provide a general summary of your changes in the Title above -->
 

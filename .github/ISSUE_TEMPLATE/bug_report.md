@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 ## Summary
 <!--- Provide a general summary of the issue in the Title above -->
 
@@ -33,4 +42,3 @@ like user names in paths by replacing them with "REDACTED" -->
 
 ### OS version
 <!--- Provide the version of Linux/Windows you used with whatever update/build identifier -->
-
