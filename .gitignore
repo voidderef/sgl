@@ -1,0 +1,8 @@
+.idea/
+/bin
+/build
+/cmake-build-debug
+/deps/build
+/deps/src/**/checkout
+/test-env
+/save

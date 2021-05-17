@@ -1,0 +1,61 @@
+image: docker:stable
+
+variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+
+services:
+  - docker:19.03.8-dind
+
+before_script:
+  - docker info
+
+stages:
+  - build-deps
+  - build
+  - releasetag
+
+build-deps:
+  stage: build-deps
+  before_script:
+    - apk update && apk add make > /dev/null
+  script:
+    - make build-docker-deps
+  # Cache build output for next stage, makes it available to next step
+  artifacts:
+    name: "$CI_COMMIT_SHORT_SHA-$CI_JOB_NAME"
+    paths:
+      - deps/build
+  only:
+    - tags
+
+build:
+  stage: build
+  dependencies:
+    - build-deps
+  before_script:
+    - apk update && apk add make > /dev/null
+  script:
+    - make build-docker
+    - mv build/docker/package/*.zip .
+  artifacts:
+    name: "$CI_COMMIT_SHORT_SHA-$CI_JOB_NAME"
+    paths:
+      - ./*.zip
+  only:
+    - tags
+    
+releasetag:
+  stage: releasetag
+  dependencies: []
+  before_script:
+    - apk update && apk add curl > /dev/null
+  script:
+    - |
+      curl --silent --show-error \
+        --data "{\"tag_name\": \"${CI_COMMIT_TAG}\", \"name\": \"${CI_PROJECT_NAME}-${CI_COMMIT_TAG}\", \"description\": \"${CI_COMMIT_TAG_MESSAGE:-No release notes.}\"}" \
+        --header "Content-Type: application/json" \
+        --header "Private-Token: ${CI_PRIVATE_TOKEN}" \
+        --request POST \
+        "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/releases"
+  only:
+    - tags

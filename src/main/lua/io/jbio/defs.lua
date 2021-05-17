@@ -1,0 +1,57 @@
+--------------------------------------
+-- IO device identifier
+--------------------------------------
+IO_JBIO_IDENTIFIER = "jbio"
+
+--------------------------------------
+-- Digital input states
+--------------------------------------
+IO_JBIO_DI_PANEL1 = 0
+IO_JBIO_DI_PANEL2 = 1
+IO_JBIO_DI_PANEL3 = 2
+IO_JBIO_DI_PANEL4 = 3
+IO_JBIO_DI_PANEL5 = 4
+IO_JBIO_DI_PANEL6 = 5
+IO_JBIO_DI_PANEL7 = 6
+IO_JBIO_DI_PANEL8 = 7
+IO_JBIO_DI_PANEL9 = 8
+IO_JBIO_DI_PANEL10 = 9
+IO_JBIO_DI_PANEL11 = 10
+IO_JBIO_DI_PANEL12 = 11
+IO_JBIO_DI_PANEL13 = 12
+IO_JBIO_DI_PANEL14 = 13
+IO_JBIO_DI_PANEL15 = 14
+IO_JBIO_DI_PANEL16 = 15
+
+IO_JBIO_DI_PANEL_ANY = 16
+
+IO_JBIO_DI_TEST = 17
+IO_JBIO_DI_SERVICE = 18
+IO_JBIO_DI_COIN = 19
+
+--------------------------------------
+-- Analog output states
+--------------------------------------
+IO_JBIO_AO_FRONT_LED_R = 0
+IO_JBIO_AO_FRONT_LED_G = 1
+IO_JBIO_AO_FRONT_LED_B = 2
+
+IO_JBIO_AO_TOP_LED_R = 3
+IO_JBIO_AO_TOP_LED_G = 4
+IO_JBIO_AO_TOP_LED_B = 5
+
+IO_JBIO_AO_LEFT_LED_R = 6
+IO_JBIO_AO_LEFT_LED_G = 7
+IO_JBIO_AO_LEFT_LED_B = 8
+
+IO_JBIO_AO_RIGHT_LED_R = 9
+IO_JBIO_AO_RIGHT_LED_G = 10
+IO_JBIO_AO_RIGHT_LED_B = 11
+
+IO_JBIO_AO_TITLE_LED_R = 12
+IO_JBIO_AO_TITLE_LED_G = 13
+IO_JBIO_AO_TITLE_LED_B = 14
+
+IO_JBIO_AO_WOOFER_LED_R = 15
+IO_JBIO_AO_WOOFER_LED_G = 16
+IO_JBIO_AO_WOOFER_LED_B = 17

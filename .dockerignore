@@ -1,0 +1,13 @@
+# Ignore everything
+**
+
+# Allow files and directories
+!/cmake
+!/deps/build/docker
+!/dist
+!/src
+!CMakeLists.txt
+!Common.mk
+!Makefile
+!Package.mk
+!.git
