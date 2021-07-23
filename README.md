@@ -3,6 +3,8 @@ Version 1.03
 
 [Release history](CHANGELOG.md)
 
+Until I got a proper CI pipeline set up, you can find binary distributions [here](https://drive.google.com/drive/folders/1-9gBaQCclefLNzQwuOYRPtj4qzw1lSCe?usp=sharing).
+
 SGL is a cross-platform scriptable front-end for selecting programs/games on a dedicated machine that doesn't
 necessarily have standard input devices like a keyboard or mouse attached.
 
