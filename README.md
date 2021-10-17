@@ -306,7 +306,7 @@ from the file `lua/io/joystick/sdl2/defs.lua`.
 If you want to map the same game input to multiple joystick inputs, use a logical or to combine the inputs, for example:
 ```lua
 dest.digital[SCREEN_ATTRACT_DI_SELECT_NEXT] = 
-    iop_input_state_is_pushed(IO_JOYSTICK_SDL2_DI_JOY1_BUTTON_1, src, src_prev) ||
+    iop_input_state_is_pushed(IO_JOYSTICK_SDL2_DI_JOY1_BUTTON_1, src, src_prev) or
     iop_input_state_is_pushed(IO_JOYSTICK_SDL2_DI_JOY2_BUTTON_1, src, src_prev) 
 ```
 
