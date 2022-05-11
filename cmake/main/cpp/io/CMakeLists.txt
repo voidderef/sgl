@@ -46,6 +46,7 @@ else ()
     add_subdirectory(piubtn)
     add_subdirectory(piumk6)
     add_subdirectory(piumk6itg)
+    add_subdirectory(piulxio)
 endif ()
 
 add_subdirectory(joystick)

@@ -38,6 +38,9 @@ public:
     void ControlTransfer(uint8_t requestType, uint8_t request, uint16_t value, uint16_t index, uint8_t* data,
         uint16_t len, uint32_t timeoutMs);
 
+    void IntTransfer(uint8_t request, uint8_t* data, uint16_t len, uint32_t timeoutMs);
+
+
     void Close();
 
 private:
