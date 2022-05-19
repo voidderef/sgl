@@ -23,6 +23,7 @@ $(BUILD_PACKAGE_LINUX_DIR):
 	$(V)cp $(BUILD_SGL_LINUX_BIN_DIR)/libio-null.so $@/data/io/libio-null.so
 	$(V)cp $(BUILD_SGL_LINUX_BIN_DIR)/libio-piubtn.so $@/data/io/libio-piubtn.so
 	$(V)cp $(BUILD_SGL_LINUX_BIN_DIR)/libio-piumk6.so $@/data/io/libio-piumk6.so
+	$(V)cp $(BUILD_SGL_LINUX_BIN_DIR)/libio-piulxio.so $@/data/io/libio-piulxio.so
 	$(V)cp $(BUILD_SGL_LINUX_BIN_DIR)/libio-piumk6itg.so $@/data/io/libio-piumk6itg.so
 	$(V)cp -r $(SRC_MAIN_LUA_SCRIPT_DIR) $@/data
 	$(V)mkdir -p $@/modules

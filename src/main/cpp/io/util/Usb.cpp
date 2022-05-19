@@ -34,14 +34,6 @@ void Usb::Open()
         throw;
     }
 
-    ret = libusb_set_configuration(m_dev, m_config);
-
-    if (ret != LIBUSB_SUCCESS) {
-        libusb_close(m_dev);
-        libusb_exit(m_ctx);
-
-        throw IOException("(%04X:%04X) Setting configuration failed", m_vid, m_pid, libusb_error_name(ret));
-    }
 
     // check if the device is attached to the kernel, detach it first then
     if (libusb_kernel_driver_active(m_dev, m_interface) == 1) {
@@ -56,6 +48,15 @@ void Usb::Open()
         }
     }
 
+    ret = libusb_set_configuration(m_dev, m_config);
+
+    if (ret != LIBUSB_SUCCESS) {
+        libusb_close(m_dev);
+        libusb_exit(m_ctx);
+
+        throw IOException("(%04X:%04X) Setting configuration failed: %s", m_vid, m_pid, libusb_error_name(ret));
+    }
+
     ret = libusb_claim_interface(m_dev, m_interface);
 
     if (ret != LIBUSB_SUCCESS) {
@@ -65,6 +66,17 @@ void Usb::Open()
         throw IOException("(%04X:%04X) Claiming interface %d failed: %s", m_vid, m_pid, m_interface,
             libusb_error_name(ret));
     }
+
+    ret = libusb_set_interface_alt_setting(m_dev, m_interface, 0);
+
+    if (ret != LIBUSB_SUCCESS) {
+        libusb_close(m_dev);
+        libusb_exit(m_ctx);
+
+        throw IOException("(%04X:%04X) Setting interface alternate: %s", m_vid, m_pid, libusb_error_name(ret));
+    }
+
+    
 }
 
 void Usb::ControlTransfer(uint8_t requestType, uint8_t request, uint16_t value, uint16_t index, uint8_t* data,
@@ -78,6 +90,19 @@ void Usb::ControlTransfer(uint8_t requestType, uint8_t request, uint16_t value, 
         throw IOException("Control transfer, failed: %s", libusb_error_name(ret));
     }
 }
+
+void Usb::IntTransfer(uint8_t endpoint, uint8_t* data, uint16_t len, uint32_t timeoutMs)
+{
+    int32_t ret;
+    int32_t transferred;
+
+    ret = libusb_interrupt_transfer(m_dev, endpoint, data, len, &transferred, timeoutMs);
+
+    if (ret < 0) {
+        throw IOException("Interrupt Transfer, failed: %d %s", ret, libusb_error_name(ret));
+    }
+}
+
 
 void Usb::Close()
 {
