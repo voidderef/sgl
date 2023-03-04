@@ -2,7 +2,7 @@
 
 #include "LuaToNativeHelper.h"
 
-#include "ks/Time.h"
+#include "ks/Time_.h"
 
 namespace sgl {
 
