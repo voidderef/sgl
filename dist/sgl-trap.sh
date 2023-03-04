@@ -20,9 +20,6 @@ if [ "$1" ]; then
     fi
 fi
 
-# Remove any old/previously executed temp tools
-rm -rf "/tmp/sgl_exec.sh"
-
 cd "$ROOT_PATH" || exit 1
 
 # Run loader
@@ -33,9 +30,9 @@ else
 fi
 
 # Execute temp script which starts the selected game
-if [ -f "/tmp/sgl_exec.sh" ]; then
-    "/tmp/sgl_exec.sh"
+if [ -f "$ROOT_PATH/tmp/sgl_launch_game" ]; then
+    "$ROOT_PATH/tmp/sgl_launch_game"
 
-	  # Start game loader again
-	  exec bash "${BASH_SOURCE[0]}" "$@"
+    # Start game loader again
+    exec bash "${BASH_SOURCE[0]}" "$@"
 fi
