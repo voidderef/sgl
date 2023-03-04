@@ -7,7 +7,7 @@ INSTALL_WIN_DIR := $(INSTALL_DIR)/win
 SRC_DIRS := $(shell find src -mindepth 1 -maxdepth 1 -type d | cut -f 2 -d '/' | sort)
 
 DOCKER_CONTAINER_NAME := "sgl-build-deps"
-DOCKER_IMAGE_NAME := "sgl:build-deps"
+DOCKER_IMAGE_NAME := "sgl-build-deps:latest"
 
 all: \
 usage

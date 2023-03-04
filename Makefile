@@ -1,7 +1,7 @@
 include Common.mk
 
 DOCKER_CONTAINER_NAME := "sgl-build"
-DOCKER_IMAGE_NAME := "sgl:build"
+DOCKER_IMAGE_NAME := "sgl-build:latest"
 
 all: \
 usage
