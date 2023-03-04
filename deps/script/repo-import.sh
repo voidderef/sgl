@@ -98,6 +98,10 @@ echo "$(pwd)"
 
 repo="$1"
 
-import_repository "${repo}"
+if [ -e "$repo/checkout" ]; then
+    echo_warn "${repo}: Checkout exists, not re-importing"
+else
+    import_repository "${repo}"
+fi
 
 cd "${old_pwd}"
