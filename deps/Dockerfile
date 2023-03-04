@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-LABEL description="Build SGL dependencies"
+LABEL description="Build environment for SGL dependencies"
 
 RUN apt-get update && apt-get install -y \
     make \
@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y \
     libgl1-mesa-dev
 
 RUN mkdir -p /sgl/deps
-
 WORKDIR /sgl/deps
 
 ENTRYPOINT [ \
