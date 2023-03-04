@@ -189,12 +189,19 @@ void AttractScreen::Update(double prevDeltaSec, const io::InputState& inputState
             // write save state
             _GetEngineProxy()->GetSaveState().Save();
 
-            // this call should never return
-            m_refGames->GetEntries()[m_pos]->ExecuteShellScript();
+            // only prepare the launch script here
+            // the process orchestration needs to handle actually launching the game
+            _GetEngineProxy()->GetGameLauncher().Prepare(*m_refGames->GetEntries()[m_pos]);
 
-            // otherwise reset
-            m_currentState = e_StateLoop;
-            m_refGames->GetEntries()[m_pos]->GetAttractBindings().LOnEnable();
+            outputState.SetDigital(e_OSD_ExitScreen, true);
+
+            // one last update call to script
+            m_refGames->GetEntries()[m_pos]->GetAttractBindings().LUpdate(prevDeltaSec, inputState);
+            m_refGames->GetEntries()[m_pos]->GetAttractBindings().LOnDisable();
+
+            _ExitApplication();
+
+            KS_LOG_DEBUG("Game launching quit");
 
             break;
         }
