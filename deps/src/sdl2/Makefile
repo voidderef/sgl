@@ -22,6 +22,8 @@ build-linux:
 		mkdir build && \
 		cd build && \
 		CPPFLAGS="-I$(INSTALL_LINUX_DIR)/include" LDFLAGS="-L$(INSTALL_LINUX_DIR)/lib" ../configure --prefix="$(INSTALL_LINUX_DIR)" --enable-video-wayland=no && \
+		make -j $(CPUS) install ; \
+		echo "Re-run make to work around some buggy behavior with SDL2 generated makefile scripts" ; \
 		make -j $(CPUS) install && \
 		cd .. && \
 		rm -rf build
@@ -34,6 +36,8 @@ build-win:
 		mkdir build && \
 		cd build && \
 		CPPFLAGS="-I$(INSTALL_WIN_DIR)/include" LDFLAGS="-L$(INSTALL_WIN_DIR)/lib" ../configure --prefix="$(INSTALL_WIN_DIR)" --target=i686-w64-mingw32 --host=i686-w64-mingw32 --build=x86_64-linux --enable-video-opengl=yes --enable-render-d3d=no && \
+		make -j $(CPUS) install ; \
+		echo "Re-run make to work around some buggy behavior with SDL2 generated makefile scripts" ; \
 		make -j $(CPUS) install && \
 		cd .. && \
 		rm -rf build
