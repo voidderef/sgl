@@ -32,6 +32,10 @@ public:
             return m_name;
         }
 
+        const std::string& GetPathStartScript() const {
+            return m_pathStartScript;
+        }
+
         AttractLuaBindings& GetAttractBindings() {
             return m_attractBindings;
         }
@@ -46,19 +50,15 @@ public:
             return m_luaRefArgs;
         }
 
-        void ExecuteShellScript() {
-            m_shellScript.Execute();
-        }
-
         friend std::ostream& operator<<(std::ostream& os, const Entry& o)
         {
-            return os << o.m_id << ", " << o.m_name << ", " << o.m_shellScript << ", " << o.m_attractBindings;
+            return os << o.m_id << ", " << o.m_name << ", " << o.m_pathStartScript << ", " << o.m_attractBindings;
         }
 
     private:
         uint32_t m_id;
         std::string m_name;
-        ShellScript m_shellScript;
+        std::string m_pathStartScript;
         AttractLuaBindings m_attractBindings;
 
         LuaState* m_refLuaStateGames;

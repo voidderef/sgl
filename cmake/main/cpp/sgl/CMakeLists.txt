@@ -51,6 +51,7 @@ set(SOURCE_FILES
         ${SGL_SRC_MAIN_CPP_DIR}/sgl/operator/OperatorScreen.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/sgl/DataManager.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/sgl/FontManager.cpp
+        ${SGL_SRC_MAIN_CPP_DIR}/sgl/GameLauncher.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/sgl/Games.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/sgl/main.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/sgl/OutputAnimation.cpp

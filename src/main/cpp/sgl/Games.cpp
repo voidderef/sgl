@@ -12,7 +12,7 @@ Games::Entry::Entry(uint32_t id, const std::string& name, const std::string& pat
         const std::string& pathEntryLuaScript, LuaState* refLuaStateGames, int luaRefResources, int luaRefArgs) :
     m_id(id),
     m_name(name),
-    m_shellScript(pathStartScript),
+    m_pathStartScript(pathStartScript),
     m_attractBindings(pathEntryLuaScript),
     m_refLuaStateGames(refLuaStateGames),
     m_luaRefResources(luaRefResources),
