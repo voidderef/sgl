@@ -391,4 +391,18 @@ void FileSystem::SaveFile(const std::string& path, const void* data,
     fclose(file);
 }
 
+void FileSystem::RemoveFile(const std::string& path)
+{
+    int ret;
+    const std::string filePath = m_rootPath + "/" + path;
+
+    KS_LOG_DEBUG("Deleting file %s", filePath);
+
+    ret = remove(filePath.c_str());
+
+    if (ret != 0) {
+        throw FileSystemException(errno, "Deleting file %s failed", filePath);
+    }
+}
+
 }

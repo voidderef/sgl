@@ -57,6 +57,8 @@ public:
     // overwrites anything existing without asking
     void SaveFile(const std::string& path, const void* data, size_t size);
 
+    void RemoveFile(const std::string& path);
+
     friend std::ostream& operator<<(std::ostream& os, const FileSystem& o)
     {
         return os << '[' << o.m_name << "] " << o.m_rootPath;
