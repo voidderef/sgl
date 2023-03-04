@@ -8,6 +8,7 @@
 
 #include "sgl/DataManager.h"
 #include "sgl/FontManager.h"
+#include "sgl/GameLauncher.h"
 #include "sgl/Renderer.h"
 #include "sgl/SaveState.h"
 #include "sgl/SFXManager.h"
@@ -25,7 +26,8 @@ public:
     EngineProxy(ks::Settings* refSettings, DataManager* refDataManager, io::IOManager* refIoManager,
             SoundRenderer* refSoundRenderer, SFXManager* refSFXManager, Renderer* refRenderer,
             FontManager* refFontManager, TextureManager* refTextureManager, SpriteRenderer* refSpriteRenderer,
-            VideoManager* refVideoManager, WorldState* refWorldState, SaveState* refSaveState, LuaState* refLuaState) :
+            VideoManager* refVideoManager, WorldState* refWorldState, SaveState* refSaveState, LuaState* refLuaState,
+            GameLauncher* refGameLauncher) :
         m_refSettings(refSettings),
         m_refDataManager(refDataManager),
         m_refIoManager(refIoManager),
@@ -38,7 +40,8 @@ public:
         m_refVideoManager(refVideoManager),
         m_refWorldState(refWorldState),
         m_refSaveState(refSaveState),
-        m_refLuaState(refLuaState)
+        m_refLuaState(refLuaState),
+        m_refGameLauncher(refGameLauncher)
     {
     };
 
@@ -88,6 +91,10 @@ public:
         return *m_refWorldState;
     }
 
+    GameLauncher& GetGameLauncher() const {
+        return *m_refGameLauncher;
+    }
+
     SaveState& GetSaveState() const {
         return *m_refSaveState;
     }
@@ -114,6 +121,8 @@ private:
     SaveState* m_refSaveState;
 
     LuaState* m_refLuaState;
+
+    GameLauncher* m_refGameLauncher;
 };
 
 }

@@ -66,6 +66,7 @@ private:
 
     WorldState* m_worldState;
     SaveState* m_saveState;
+    GameLauncher* m_gameLauncher;
 
     std::string m_nextScreenName;
     ScreenState m_screenState;

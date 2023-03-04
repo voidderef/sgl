@@ -40,6 +40,7 @@ SGL::SGL(int argc, char** argv) :
     m_videoManager(nullptr),
     m_luaState(nullptr),
     m_saveState(nullptr),
+    m_gameLauncher(nullptr),
     m_nextScreenName(""),
     m_screenState(e_ScreenStateInit),
     m_currentScreen(nullptr),
@@ -289,6 +290,10 @@ void SGL::__InitData()
     m_saveState = new SaveState(new ks::FileSystem(m_settings->GetValue<const std::string&>(
         SGLSettings::ms_systemSavePath), "save"));
     m_saveState->Load();
+
+    m_gameLauncher = new GameLauncher(new ks::FileSystem(m_settings->GetValue<const std::string&>(
+        SGLSettings::ms_systemTmpPath), "tmp"));
+    m_gameLauncher->Init();
 }
 
 bool SGL::__InitGfx()
@@ -376,7 +381,8 @@ void SGL::__InitScreenAndWorldState()
     m_worldState = new WorldState("root");
 
     m_proxy = new EngineProxy(m_settings, m_dataManager, m_ioManager, m_soundRenderer, m_sfxManager, m_renderer,
-        m_fontManager, m_textureManager, m_spriteRenderer, m_videoManager, m_worldState, m_saveState, m_luaState);
+        m_fontManager, m_textureManager, m_spriteRenderer, m_videoManager, m_worldState, m_saveState, m_luaState,
+        m_gameLauncher);
 }
 
 void SGL::__ShutdownScreenAndWorldState()
