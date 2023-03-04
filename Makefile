@@ -100,8 +100,6 @@ build-docker:
 		-t $(DOCKER_IMAGE_NAME) \
 		-f Dockerfile \
 		.
-	$(V)rm -rf $(BUILD_DIR)
-	$(V)mkdir -p $(BUILD_DIR)
 	$(V)docker \
 		run \
 		--volume $(shell pwd):/sgl \
