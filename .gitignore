@@ -6,3 +6,4 @@
 /deps/src/**/checkout
 /test-env
 /save
+.DS_Store
