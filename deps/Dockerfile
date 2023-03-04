@@ -29,4 +29,4 @@ ENTRYPOINT [ \
     "-c" , \
     "cd /sgl/deps && \
     make import && \
-    make INSTALL_DIR=/sgl/deps/build/docker build" ]
+    make build" ]
