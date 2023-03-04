@@ -54,8 +54,13 @@ build-deps:
 
 build: build-linux build-win
 
+# Copy deps to binary output dir of linux build because setting rpath is broken on some cmake
+# versions. This results in builds failing on linking the sgl executable because the local
+# libraries to use cannot be found.
 build-linux:
 	$(V)mkdir -p $(BUILD_SGL_LINUX_DIR)
+	$(V)mkdir -p /sgl/deps/build/linux
+	$(V)cp -r deps/build/linux/lib build/sgl/linux/bin
 	$(V)cd $(BUILD_SGL_LINUX_DIR) && \
 		cmake \
 			-DCMAKE_CXX_FLAGS="-I$(BUILD_DEPS_LINUX_DIR)/include" \
@@ -90,16 +95,25 @@ build-docker-deps:
 
 build-docker:
 	$(V)docker rm -f $(DOCKER_CONTAINER_NAME) 2> /dev/null || true
-	$(V)docker build -t $(DOCKER_IMAGE_NAME) -f Dockerfile .
-	$(V)docker create --name $(DOCKER_CONTAINER_NAME) $(DOCKER_IMAGE_NAME)
-	$(V)rm -rf $(BUILD_DOCKER_DIR)
-	$(V)mkdir -p $(BUILD_DOCKER_DIR)
-	$(V)docker cp $(DOCKER_CONTAINER_NAME):/sgl/build/package $(BUILD_DOCKER_DIR)/package
+	$(V)docker \
+		build \
+		--platform=linux/amd64 \
+		-t $(DOCKER_IMAGE_NAME) \
+		-f Dockerfile \
+		.
+	$(V)rm -rf $(BUILD_DIR)
+	$(V)mkdir -p $(BUILD_DIR)
+	$(V)docker \
+		run \
+		--platform linux/amd64 \
+		--volume $(shell pwd):/sgl \
+		--name $(DOCKER_CONTAINER_NAME) \
+		$(DOCKER_IMAGE_NAME)
 
 clean-docker:
 	$(V)docker rm -f $(DOCKER_CONTAINER_NAME) || true
 	$(V)docker image rm -f $(DOCKER_IMAGE_NAME) || true
-	$(V)rm -rf $(BUILD_DOCKER_DIR)
+	$(V)rm -rf $(BUILD_DIR)
 
 build-docker-release: clean clean-docker build-docker-deps build-docker
 
