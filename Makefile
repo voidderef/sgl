@@ -97,7 +97,6 @@ build-docker:
 	$(V)docker rm -f $(DOCKER_CONTAINER_NAME) 2> /dev/null || true
 	$(V)docker \
 		build \
-		--platform=linux/amd64 \
 		-t $(DOCKER_IMAGE_NAME) \
 		-f Dockerfile \
 		.
@@ -105,7 +104,6 @@ build-docker:
 	$(V)mkdir -p $(BUILD_DIR)
 	$(V)docker \
 		run \
-		--platform linux/amd64 \
 		--volume $(shell pwd):/sgl \
 		--name $(DOCKER_CONTAINER_NAME) \
 		$(DOCKER_IMAGE_NAME)
