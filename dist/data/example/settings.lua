@@ -81,6 +81,7 @@ return {
     -- System settings, data and save path
     system = {
         data_path = "./data",
-        save_path = "./save"
+        save_path = "./save",
+        tmp_path = "./tmp",
     }
 }

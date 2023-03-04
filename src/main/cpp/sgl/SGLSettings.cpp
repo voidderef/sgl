@@ -18,5 +18,6 @@ const std::string SGLSettings::ms_soundSfxVolume = "sound" + ks::Settings::ms_de
 
 const std::string SGLSettings::ms_systemDataPath = "system" + ks::Settings::ms_delim + "data_path";
 const std::string SGLSettings::ms_systemSavePath = "system" + ks::Settings::ms_delim + "save_path";
+const std::string SGLSettings::ms_systemTmpPath = "system" + ks::Settings::ms_delim + "tmp_path";
 
 }

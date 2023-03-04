@@ -21,6 +21,7 @@ public:
 
     static const std::string ms_systemDataPath;
     static const std::string ms_systemSavePath;
+    static const std::string ms_systemTmpPath;
 
 private:
     SGLSettings() = default;
