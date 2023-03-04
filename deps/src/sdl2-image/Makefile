@@ -17,6 +17,7 @@ import:
 build: build-linux build-win
 
 build-linux:
+	$(V)echo "Building with $(CPUS) CPUs"
 	$(V)cd checkout && \
 		rm -rf build && \
 		./autogen.sh && \
@@ -34,6 +35,7 @@ build-linux:
 		rm -rf build
 
 build-win:
+	$(V)echo "Building with $(CPUS) CPUs"
 	$(V)cd checkout && \
 		rm -rf build && \
 		./autogen.sh && \
