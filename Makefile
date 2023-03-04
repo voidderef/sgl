@@ -1,7 +1,5 @@
 include Common.mk
 
-CPUS := $(shell grep -c ^processor /proc/cpuinfo)
-
 DOCKER_CONTAINER_NAME := "sgl-build"
 DOCKER_IMAGE_NAME := "sgl:build"
 
