@@ -31,6 +31,8 @@ public:
         __SetValueInt(key, static_cast<int64_t>(value));
     }
 
+    std::string ToString() const;
+
     friend std::ostream& operator<<(std::ostream& os, const Settings& o)
     {
         for (auto& it : o.m_storage) {

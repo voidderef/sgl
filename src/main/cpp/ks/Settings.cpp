@@ -297,6 +297,17 @@ void Settings::SetValue<bool>(const std::string& key, bool value)
     m_storage.insert(std::make_pair(key, new EntryBool(key, value)));
 }
 
+std::string Settings::ToString() const
+{
+    std::string str;
+
+    for (auto& it : m_storage) {
+        str += it.second->ToString() + "\n";
+    }
+
+    return str;
+}
+
 int64_t Settings::__GetValueInt(const std::string& key) const
 {
     auto it = m_storage.find(key);
