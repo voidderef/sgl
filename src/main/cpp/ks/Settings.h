@@ -170,7 +170,11 @@ public:
         }
 
         std::string ToString() const override {
-            return "[bool] " + GetKey() + (GetValue() ? " = true" : " = false");
+            if (GetValue()) {
+                return "[bool] " + GetKey() + " = true";
+            } else {
+                return "[bool] " + GetKey() + " = false";
+            }
         }
 
     private:
