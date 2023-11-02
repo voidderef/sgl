@@ -7,7 +7,7 @@ namespace ks {
 class StringUtils
 {
 public:
-    const std::string Trim(const std::string& str, const std::string& trim_chars);
+    static const std::string Trim(const std::string& str, const std::string& trim_chars);
 
     static std::string ToLower(const std::string& str);
 
