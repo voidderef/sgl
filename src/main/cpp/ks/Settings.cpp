@@ -2,7 +2,7 @@
 
 namespace ks {
 
-const std::string Settings::ms_delim = "/";
+const std::string Settings::ms_delim = ".";
 
 Settings::Settings()
 {
