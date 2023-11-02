@@ -79,6 +79,8 @@ bool SGL::__Init()
         return false;
     }
 
+    __SetLogLevel();
+
     __InitData();
 
     if (!__InitSfx()) {
@@ -278,6 +280,30 @@ bool SGL::__LoadSettings()
     }
 
     return true;
+}
+
+void SGL::__SetLogLevel()
+{
+    const auto logLevel = m_settings->GetValue<const std::string&>(SGLSettings::ms_systemLogLevel);
+
+    if (logLevel == "trace") {
+        ks::Logger::GetLogger()->set_level(spdlog::level::trace);
+    } else if (logLevel == "debug") {
+        ks::Logger::GetLogger()->set_level(spdlog::level::debug);
+    } else if (logLevel == "info") {
+        ks::Logger::GetLogger()->set_level(spdlog::level::info);
+    } else if (logLevel == "warn") {
+        ks::Logger::GetLogger()->set_level(spdlog::level::warn);
+    } else if (logLevel == "error") {
+        ks::Logger::GetLogger()->set_level(spdlog::level::err);
+    } else if (logLevel == "panic") {
+        ks::Logger::GetLogger()->set_level(spdlog::level::critical);
+    } else {
+        KS_LOG_WARN("Invalid value %s for log level, defaulting to warn");
+        ks::Logger::GetLogger()->set_level(spdlog::level::warn);
+    }
+
+    KS_LOG_INFO("Log level set to: %s", logLevel);
 }
 
 void SGL::__InitData()

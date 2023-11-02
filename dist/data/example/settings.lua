@@ -80,6 +80,7 @@ return {
 
     -- System settings, data and save path
     system = {
+        log_level = "info",
         data_path = "./data",
         save_path = "./save",
         tmp_path = "./tmp",

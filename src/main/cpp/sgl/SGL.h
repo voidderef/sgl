@@ -80,6 +80,7 @@ private:
 private:
     void __LogSGLHeader();
     bool __LoadSettings();
+    void __SetLogLevel();
     void __InitData();
     bool __InitSfx();
     bool __InitGfx();

@@ -19,6 +19,7 @@ public:
     static const std::string ms_soundMasterVolume;
     static const std::string ms_soundSfxVolume;
 
+    static const std::string ms_systemLogLevel;
     static const std::string ms_systemDataPath;
     static const std::string ms_systemSavePath;
     static const std::string ms_systemTmpPath;
