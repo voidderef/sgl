@@ -17,7 +17,6 @@ set(SOURCE_FILES
         ${SGL_SRC_MAIN_CPP_DIR}/ks/FileMemory.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/ks/FileStream.cpp
 		${SGL_SRC_MAIN_CPP_DIR}/ks/FileSystem.cpp
-        ${SGL_SRC_MAIN_CPP_DIR}/ks/KitchenSink.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/ks/Logger.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/ks/Process.cpp
         ${SGL_SRC_MAIN_CPP_DIR}/ks/Random.cpp
