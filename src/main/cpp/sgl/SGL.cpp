@@ -1,7 +1,10 @@
 #include "SGL.h"
 
 #include "ks/Defs.h"
-#include "ks/KitchenSink.h"
+#include "ks/Logger.hpp"
+#include "ks/Process_.h"
+#include "ks/Random.h"
+#include "ks/SettingsCmdArgsLoader.h"
 
 #include "sgl/attract/AttractScreen.h"
 #include "sgl/boot/BootScreen.h"
@@ -67,19 +70,39 @@ int SGL::Main()
 bool SGL::__Init()
 {
     if (m_argc < 2) {
-        printf("Usage: %s <settings.lua>\n", m_argv[0]);
+        printf("Usage: %s <settings.lua> ARGS...\n", m_argv[0]);
         return false;
     }
 
-    ks::KitchenSink::Init("sgl.log");
+    m_signalHandler = new backward::SignalHandling();
+
+    ks::Logger::Setup();
 
     __LogSGLHeader();
 
+    KS_LOG_DEBUG("Command line arguments (total %d)", m_argc);
+
+    for (int i = 0; i < m_argc; i++) {
+        KS_LOG_DEBUG("%d: %s", i, m_argv[i]);
+    }
+
     if (!__LoadSettings()) {
+        delete m_signalHandler;
+        
         return false;
     }
 
+    const auto logFilePath = m_settings->GetValue<const std::string&>(SGLSettings::ms_systemLogFilePath);
+
+    // Re-init with log file output
+    if (!logFilePath.empty()) {
+        ks::Logger::Setup(logFilePath);
+    }
+
     __SetLogLevel();
+
+    ks::Random::Init();
+    ks::Process::LogInfo();
 
     __InitData();
 
@@ -249,7 +272,11 @@ void SGL::__Shutdown()
     __ShutdownGfx();
     __ShutdownData();
 
-    ks::KitchenSink::Shutdown();
+    ks::Random::Shutdown();
+
+    ks::Logger::Shutdown();
+
+    delete m_signalHandler;
 }
 
 void SGL::__LogSGLHeader()
@@ -266,18 +293,32 @@ void SGL::__LogSGLHeader()
 
 bool SGL::__LoadSettings()
 {
-    KS_LOG_INFO("Loading settings");
-
     m_settings = new ks::Settings();
+
+    KS_LOG_INFO("Loading settings from lua file: %s", m_argv[1]);
 
     try {
         LuaSettingsLoader loader(m_argv[1]);
         loader.Load(*m_settings);
     } catch (ks::Exception& e) {
+        KS_LOG_ERROR("Loading settings from lua file %s failed: %s", m_argv[1], e.what());
         delete m_settings;
-        KS_LOG_ERROR("Loading settings failed: %s", e.what());
         return false;
     }
+
+    KS_LOG_INFO("Loading override settings from command line args");
+
+    // Override lua settings with command line args if provided
+    try {
+        ks::SettingsCmdArgsLoader loader(m_argc, m_argv);
+        loader.Load(*m_settings);
+    } catch (ks::Exception& e) {
+        KS_LOG_ERROR("Loading settings from command line args failed: %s", e.what());
+        delete m_settings;
+        return false;
+    }
+
+    KS_LOG_DEBUG("Settings:\n%s", m_settings->ToString());
 
     return true;
 }

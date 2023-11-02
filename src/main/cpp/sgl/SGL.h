@@ -1,5 +1,7 @@
 #pragma once
 
+#include <backwards/backward.hpp>
+
 #include "io/IOManager.h"
 #include "io/sdl2/EventProxy.h"
 
@@ -48,6 +50,8 @@ private:
     };
 
 private:
+    backward::SignalHandling* m_signalHandler;
+
     ks::Settings* m_settings;
 
     DataManager* m_dataManager;
