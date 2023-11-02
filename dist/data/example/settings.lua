@@ -78,11 +78,21 @@ return {
         sfx_volume = 1.0
     },
 
-    -- System settings, data and save path
+    -- System settings
     system = {
+        -- Change log levels for more/less output, in order (less to more)
+        -- panic
+        -- error
+        -- warn
+        -- info
+        -- debug
+        -- trace
         log_level = "info",
+        -- System data path (read only)
         data_path = "./data",
+        -- System save path (must be writable)
         save_path = "./save",
+        -- Path for storing temporary data (must be writable)
         tmp_path = "./tmp",
     }
 }
