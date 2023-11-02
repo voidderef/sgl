@@ -39,6 +39,7 @@ endif ()
 add_subdirectory(null)
 
 if (WIN32)
+    add_subdirectory(ddrio)
     add_subdirectory(iidxio)
     add_subdirectory(jbio)
 else ()

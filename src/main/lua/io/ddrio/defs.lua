@@ -1,0 +1,51 @@
+--------------------------------------
+-- IO device identifier
+--------------------------------------
+IO_DDRIO_IDENTIFIER = "ddrio"
+
+--------------------------------------
+-- Digital input states
+--------------------------------------
+IO_DDRIO_DI_P1_PAD_UP = 0
+IO_DDRIO_DI_P1_PAD_DOWN = 1
+IO_DDRIO_DI_P1_PAD_LEFT = 2
+IO_DDRIO_DI_P1_PAD_RIGHT = 3
+
+IO_DDRIO_DI_P2_PAD_UP = 4
+IO_DDRIO_DI_P2_PAD_DOWN = 5
+IO_DDRIO_DI_P2_PAD_LEFT = 6
+IO_DDRIO_DI_P2_PAD_RIGHT = 7
+
+IO_DDRIO_DI_P1_SELECT_LEFT = 8
+IO_DDRIO_DI_P1_SELECT_RIGHT = 9
+IO_DDRIO_DI_P1_START = 10
+
+IO_DDRIO_DI_P2_SELECT_LEFT = 11
+IO_DDRIO_DI_P2_SELECT_RIGHT = 12
+IO_DDRIO_DI_P2_START = 13
+
+IO_DDRIO_DI_TEST = 14
+IO_DDRIO_DI_SERVICE = 15
+
+--------------------------------------
+-- Digital output states
+--------------------------------------
+IO_DDRIO_DO_P1_PAD_UP = 0
+IO_DDRIO_DO_P1_PAD_DOWN = 1
+IO_DDRIO_DO_P1_PAD_LEFT = 2
+IO_DDRIO_DO_P1_PAD_RIGHT = 3
+
+IO_DDRIO_DO_P2_PAD_UP = 4
+IO_DDRIO_DO_P2_PAD_DOWN = 5
+IO_DDRIO_DO_P2_PAD_LEFT = 6
+IO_DDRIO_DO_P2_PAD_RIGHT = 7
+
+IO_DDRIO_DO_P1_CABINET_BUTTON = 8
+IO_DDRIO_DO_P2_CABINET_BUTTON = 9
+
+IO_DDRIO_DO_LAMP_TOP_LEFT = 10
+IO_DDRIO_DO_LAMP_BOTTOM_LEFT = 11
+IO_DDRIO_DO_LAMP_TOP_RIGHT = 12
+IO_DDRIO_DO_LAMP_BOTTOM_RIGHT = 13
+
+IO_DDRIO_DO_BASS_NEONS = 14
