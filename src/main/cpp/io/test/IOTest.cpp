@@ -1,4 +1,8 @@
-#include "ks/KitchenSink.h"
+#include <backwards/backward.hpp>
+
+#include "ks/Logger.hpp"
+#include "ks/Process_.h"
+#include "ks/Random.h"
 #include "ks/Settings.h"
 #include "ks/SettingsCmdArgsLoader.h"
 #include "ks/Thread.h"
@@ -15,7 +19,11 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    ks::KitchenSink::Init();
+    auto signalHandler = new backward::SignalHandling();
+
+    ks::Logger::Setup();
+    ks::Random::Init();
+    ks::Process::LogInfo();
 
     ks::Settings settings;
     ks::SettingsCmdArgsLoader loader(argc, argv);
@@ -57,5 +65,8 @@ int main(int argc, char** argv)
     ioManager->Shutdown();
     delete ioManager;
 
-    ks::KitchenSink::Shutdown();
+    ks::Random::Shutdown();
+    ks::Logger::Shutdown();
+
+    delete signalHandler;
 }
