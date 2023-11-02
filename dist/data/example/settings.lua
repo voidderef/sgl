@@ -88,6 +88,8 @@ return {
         -- debug
         -- trace
         log_level = "info",
+        -- Path to the log file. Leave empty to disable logging to file
+        log_file_path = "sgl.log"
         -- System data path (read only)
         data_path = "./data",
         -- System save path (must be writable)
