@@ -28,6 +28,7 @@ void Logger::Setup(const std::string& logFile)
         sinks.push_back(std::make_shared<spdlog::sinks::simple_file_sink_mt>(logFile, true));
     }
 
+    m_logger.reset();
     m_logger = std::make_shared<spdlog::logger>("sgl", begin(sinks), end(sinks));
     m_logger->set_pattern("[%L][%D][%T.%e][thread-%t]%v");
 
