@@ -1,5 +1,5 @@
 # Simple Game Loader (SGL)
-Version 1.04
+Version: `1.05`
 
 [Release history](CHANGELOG.md)
 

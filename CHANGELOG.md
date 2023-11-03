@@ -1,4 +1,9 @@
 # Release history
+## 1.05
+### Features
+
+### Fixes
+
 ## 1.04
 
 ### Features
