@@ -1,6 +1,16 @@
 # Release history
 ## 1.04
-* Bugfix lua function exposure was missing
+
+### Features
+* Add support for bemanitools ddrio interface
+* `log_file` and `log_level` as configuration parameters, see `settings.lua` example
+* Command line argument configuration overrides, e.g. `--gfx.fullscreen false` following the
+  configuration path nesting in the `settings.lua` file for any configuration parameter
+
+### Fixes
+* Broken parameter logging on BemanitoolsGlue code. Fixes logging in general for bemanitools API
+  log output
+* Lua function exposure missing
 
 ## 1.03
 * Automatic default game start when a timer runs out and no user input triggered
