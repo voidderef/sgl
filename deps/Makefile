@@ -46,7 +46,7 @@ import-%:
 	$(V)cd src/$* && make import
 
 # Build order to resolve dependencies
-build: build-output-dir build-zlib build-libjpeg build-libpng build-freetype build-sdl2 build-sdl2-image build-sdl2-ttf build-ffmpeg
+build: build-output-dir build-zlib build-libjpeg build-libpng build-freetype build-sdl2 build-sdl2-image build-sdl2-ttf build-ffmpeg build-fmodex
 
 build-output-dir:
 	$(V)mkdir -p $(INSTALL_LINUX_DIR)
