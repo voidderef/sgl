@@ -3,9 +3,11 @@
 #include <cstring>
 
 #include "PiulxioDefs.h"
+#include "io/IOException.h"
 
 #define LXIO_VID        0x0D2F
-#define LXIO_PID        0x1020
+#define LXIO_PID_V1     0x1020
+#define LXIO_PID_V2     0x1040
 #define LXIO_CONFIG     0x01
 #define LXIO_IFACE      0x00
 
@@ -20,7 +22,7 @@ namespace piulxio {
 
 PiuLxio::PiuLxio() :
     IODevice(DEVICE_IDENT),
-    m_usb(new Usb(LXIO_VID, LXIO_PID, LXIO_CONFIG, LXIO_IFACE)),
+    m_usb(nullptr),
     m_inBuffer(new InBuffer()),
     m_outBuffer(new OutBuffer()),
     m_inData(new InData()),
@@ -46,7 +48,14 @@ PiuLxio::~PiuLxio()
 
 void PiuLxio::Open(const ks::Settings& settings)
 {
-    m_usb->Open();
+    try {
+        m_usb = new Usb(LXIO_VID, LXIO_PID_V1, LXIO_CONFIG, LXIO_IFACE);
+        m_usb->Open();
+    } catch (const IOException&) {
+        delete m_usb;
+        m_usb = new Usb(LXIO_VID, LXIO_PID_V2, LXIO_CONFIG, LXIO_IFACE);
+        m_usb->Open();
+    }
 }
 
 void PiuLxio::Close()
