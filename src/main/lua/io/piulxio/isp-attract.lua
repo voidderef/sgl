@@ -29,7 +29,7 @@ local function __process(src, src_prev)
         text = {}
     }
 
-    dest.digital[SCREEN_ATTRACT_DI_SELECT_NEXT] = iop_input_state_is_pushed(IO_LXIO_DI_P1_RD, src, src_prev) or
+    dest.digital[SCREEN_ATTRACT_DI_SELECT_NEXT] = iop_input_state_is_pushed(IO_PIUIOLXIO_DI_P1_RD, src, src_prev) or
         iop_input_state_is_pushed(IO_PIUIOLXIO_DI_P2_RD, src, src_prev) or
         iop_input_state_is_pushed(IO_PIUIOLXIO_DI_P1_RD_MENU, src, src_prev) or
         iop_input_state_is_pushed(IO_PIUIOLXIO_DI_P2_RD_MENU, src, src_prev)

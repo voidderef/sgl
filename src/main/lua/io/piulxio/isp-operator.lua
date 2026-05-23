@@ -29,13 +29,13 @@ local function __process(src, src_prev)
         text = {}
     }
 
-    dest.digital[SCREEN_OPERATOR_DI_SELECT_NEXT] = iop_input_state_is_pushed(IO_LXIO_DI_OP_TEST, src, src_prev)
-    dest.digital[SCREEN_OPERATOR_DI_SELECTED] = iop_input_state_is_pushed(IO_LXIO_DI_OP_SERVICE, src,
+    dest.digital[SCREEN_OPERATOR_DI_SELECT_NEXT] = iop_input_state_is_pushed(IO_PIUIOLXIO_DI_OP_TEST, src, src_prev)
+    dest.digital[SCREEN_OPERATOR_DI_SELECTED] = iop_input_state_is_pushed(IO_PIUIOLXIO_DI_OP_SERVICE, src,
         src_prev)
-    dest.digital[SCREEN_OPERATOR_DI_NOISE_BACK] = iop_input_state_is_pushed(IO_LXIO_DI_OP_TEST, src, src_prev)
-        or iop_input_state_is_pushed(IO_LXIO_DI_OP_SERVICE, src, src_prev)
-    dest.digital[SCREEN_OPERATOR_DI_EXIT_APPLICATION] = iop_input_state_is_held(IO_LXIO_DI_OP_TEST, src, src_prev)
-        and iop_input_state_is_held(IO_LXIO_DI_OP_SERVICE, src, src_prev)
+    dest.digital[SCREEN_OPERATOR_DI_NOISE_BACK] = iop_input_state_is_pushed(IO_PIUIOLXIO_DI_OP_TEST, src, src_prev)
+        or iop_input_state_is_pushed(IO_PIUIOLXIO_DI_OP_SERVICE, src, src_prev)
+    dest.digital[SCREEN_OPERATOR_DI_EXIT_APPLICATION] = iop_input_state_is_held(IO_PIUIOLXIO_DI_OP_TEST, src, src_prev)
+        and iop_input_state_is_held(IO_PIUIOLXIO_DI_OP_SERVICE, src, src_prev)
 
     return dest, out
 end
